@@ -16,6 +16,12 @@ The fingerprint is calculated by writing the following to a buffer and retrievin
 - Timezone
 - Gamepad Count (+ count of connected gamepads)
 
+On Windows-only, the following environment variables are used:
+- Username
+- Computer Name
+- Number of Processors
+- CPU Architecture, identifier, level and revision
+
 ## Quick start
 
 - Import the fingerprint_md5.gml script into your project.
