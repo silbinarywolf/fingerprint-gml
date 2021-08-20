@@ -22,15 +22,15 @@ function get_fingerprint() {
 	// Operating system
 	buffer_write(buffer, buffer_s32, os_type);
 	buffer_write(buffer, buffer_s32, os_version);
-	buffer_write(buffer, buffer_s32, os_get_region());
+	buffer_write(buffer, buffer_string, os_get_region());
 
 	// Are shaders supported?
 	buffer_write(buffer, buffer_u8, shaders_are_supported());
 
 	// Game specific data
-	buffer_write(buffer, buffer_s32, os_get_config());
-	buffer_write(buffer, buffer_s32, GM_build_date);
-	buffer_write(buffer, buffer_s32, GM_version);
+	buffer_write(buffer, buffer_string, os_get_config());
+	buffer_write(buffer, buffer_string, date_time_string(GM_build_date));
+	buffer_write(buffer, buffer_string, GM_version);
 
 	// Timezone
 	var datetime = date_current_datetime();
@@ -47,7 +47,7 @@ function get_fingerprint() {
 	buffer_write(buffer, buffer_s8, hour_local - hour_utc);
 
 	//  Language
-	buffer_write(buffer, buffer_s8, os_get_language());
+	buffer_write(buffer, buffer_string, os_get_language());
 
 	// WINDOWS SPECIFIC
 	if (os_type == os_windows) {
@@ -67,5 +67,6 @@ function get_fingerprint() {
 
 	var result = buffer_md5(buffer, 0, buffer_get_size(buffer));
 	buffer_delete(buffer);
+	
 	return result;
 }
