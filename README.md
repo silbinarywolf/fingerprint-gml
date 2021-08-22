@@ -1,5 +1,3 @@
-**⚠️ This library is no longer maintained by myself, a newer fork is available here:** [https://github.com/AceKiron/fingerprint-gml](https://github.com/AceKiron/fingerprint-gml)
-
 # Fingerprint GML
 
 A simple script for fingerprinting a user in Game Maker Studio.
