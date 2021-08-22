@@ -49,20 +49,22 @@ function get_fingerprint() {
 	//  Language
 	buffer_write(buffer, buffer_string, os_get_language());
 
-	// WINDOWS SPECIFIC
-	if (os_type == os_windows) {
-		buffer_write(buffer, buffer_string, environment_get_variable("USERNAME"));
-		buffer_write(buffer, buffer_string, environment_get_variable("COMPUTERNAME"));
-		buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_ARCHITECTURE"));
-		buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_IDENTIFIER"));
-		buffer_write(buffer, buffer_string, environment_get_variable("NUMBER_OF_PROCESSORS"));
-		buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_LEVEL"));
-		buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_REVISION"));
-	}
+	if (os_browser == browser_not_a_browser) {
+		// WINDOWS SPECIFIC
+		if (os_type == os_windows) {
+			buffer_write(buffer, buffer_string, environment_get_variable("USERNAME"));
+			buffer_write(buffer, buffer_string, environment_get_variable("COMPUTERNAME"));
+			buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_ARCHITECTURE"));
+			buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_IDENTIFIER"));
+			buffer_write(buffer, buffer_string, environment_get_variable("NUMBER_OF_PROCESSORS"));
+			buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_LEVEL"));
+			buffer_write(buffer, buffer_string, environment_get_variable("PROCESSOR_REVISION"));
+		}
 
-	// LINUX SPECIFIC
-	if (os_type == os_linux) {
-		buffer_write(buffer, buffer_string, environment_get_variable("USER"));
+		// LINUX SPECIFIC
+		if (os_type == os_linux) {
+			buffer_write(buffer, buffer_string, environment_get_variable("USER"));
+		}
 	}
 
 	var result = buffer_md5(buffer, 0, buffer_get_size(buffer));
